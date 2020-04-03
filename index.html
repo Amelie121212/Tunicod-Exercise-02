@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="refresh" content="60">
+        <title>Tunicod Courses</title>
+        <link rel="stylesheet" href="style.css" type="text/css">
+    </head>
+    <body>
+        <h1>Tunicod Courses :</h1>
+        <article id="container">
+            <div class="course">
+                <div class="title"><h3>Responsive Web Design: Flexible Grids, Images, and Media Queries</h3></div>
+                Start : <input type="text" class="start" size="20" value="December 9, 2019 01:00" onchange="window.location.reload(false)"><br><br>
+                Ends : <input type="text" class="end" sizz="20" value="December 12, 2019 01:00" onchange="window.location.reload(false)"><br><br>
+                <b>Time Left :</b><br>
+                <p class=timeLeft></p>
+                Left : <progress value="0" min="0" max="0"></progress>
+            </div>
+            <div class="course">
+                <div class="title"><h3>Responsive Web Design: Flexible Data and UIs, Devices, Process and Performance</h3></div>
+                Start : <input type="text" class="start" size="20" value="December 11, 2019 01:00" onchange="window.location.reload(false)"><br><br>
+                Ends : <input type="text" class="end" size="20" value="December 14, 2019 01:00" onchange="window.location.reload(false)"><br><br>
+                <b>Time Left :</b>
+                <p class=timeLeft></p>
+                Left : <progress value="0" min="0" max="0"></progress>
+            </div>
+            <div class="course">
+                <div class="title" style="line-height: 70px;"><h3>XML Language Basics</h3></div>
+                Start : <input type="text" class="start" size="20" value="December 16, 2019 01:00" onchange="window.location.reload(false)"><br><br>
+                Ends : <input type="text" class="end" size="20" value="December 19, 2019 01:00" onchange="window.location.reload(false)"><br><br>
+                <b>Time Left :</b><br>
+                <p class=timeLeft></p>
+                Left : <progress value="0" min="0" max="0"></progress>
+            </div>
+            <div class="course">
+                <div class="title"><h3>Manipulating XML with the XML DOM and Ajax</h3></div>
+                Start : <input type="text" class="start" size="20" value="December 18, 2019 01:00" onchange="window.location.reload(false)"><br><br>
+                Ends : <input type="text" class="end" size="20" value="December 21, 2019 01:00" onchange="window.location.reload(false)"><br><br>
+                <b>Time Left :</b><br>
+                <p class=timeLeft></p>
+                Left : <progress value="0" min="0" max="0"></progress>
+            </div>
+            <div class="course">
+                <div class="title"><h3>XML Transformation Using XSLT and XSL-FO</h3></div>
+                Start : <input type="text" class="start" size="20" value="December 23, 2019 01:00" onchange="window.location.reload(false)"><br><br>
+                Ends : <input type="text" class="end" size="20" value="December 26, 2019 01:00" onchange="window.location.reload(false)"><br><br>
+                <b>Time Left :</b><br>
+                <p class=timeLeft></p>
+                Left : <progress value="0" min="0" max="0"></progress>
+            </div>
+            <div class="course">
+                <div class="title"><h3>Querying XML Data with XPath and XQuery</h3></div>
+                Start : <input type="text" class="start" size="20" value="December 25, 2019 01:00" onchange="window.location.reload(false)"><br><br>
+                Ends : <input type="text" class="end" size="20" value="December 28, 2019 01:00" onchange="window.location.reload(false)"><br><br>
+                <b>Time Left :</b><br>
+                <p class=timeLeft></p>
+                Left : <progress value="0" min="0" max="0"></progress>
+            </div>
+            <div class="course">
+                <div class="title" style="line-height: 70px;"><h3>Web Services and XML</h3></div>
+                Start : <input type="text" class="start" size="20" value="December 30, 2019 01:00" onchange="window.location.reload(false)"><br><br>
+                Ends : <input type="text" class="end" size="20" value="January 2, 2019 01:00" onchange="window.location.reload(false)"><br><br>
+                <b>Time Left :</b><br>
+                <p class=timeLeft></p>
+                Left : <progress value="0" min="0" max="0"></progress>
+            </div>
+        </article>
+        <script type="text/javascript">
+            var courses = document.querySelectorAll(".course");
+            var starts = document.querySelectorAll(".start");
+            var ends = document.querySelectorAll(".end");
+            var paragraph = document.querySelectorAll(".timeLeft");
+            var progress = document.querySelectorAll("progress");
+                
+            for (var i = 0; i < courses.length; i++) {
+                var start = Date.parse(starts[i].value);
+                var end = Date.parse(ends[i].value);
+                var now = new Date();
+                if(now > start && now < end) {
+                    countdown(i, start, end);
+                }
+            }
+               
+            function countdown(i, start, end) {
+                courses[i].style.opacity = "1";
+                courses[i].style.boxShadow="0 0 10px #d3a47f";
+                timeLeft = end - now;
+                days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                hours = Math.floor(timeLeft / (1000 * 60 * 60));
+                mins = Math.floor(timeLeft / (1000 * 60));
+                dd = days;
+                hh = hours - days * 24;
+                mm = mins - hours * 60;
+                paragraph[i].innerHTML = dd + ' days ' + hh + ' hours ' + mm + ' minutes ';
+                progress[i].max = (end - start)/1000;
+                progress[i].value = (now - start)/1000;                          
+            }
+        </script>
+    </body>
+</html>
